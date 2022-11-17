@@ -1,0 +1,48 @@
+﻿<Page x:Class="ImageConversion.RotationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RotationPage">
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Name="LeftColumn"/>
+            <ColumnDefinition Name="RightColumn"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Name="RotationRow"/>
+            <RowDefinition Name="FiltrationRow"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Name="AngleTextBlock" 
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Center" 
+                   Grid.ColumnSpan="2" 
+                   FontSize="20 px">
+            
+            Angle
+
+        </TextBlock>
+
+        <TextBlock Name="RotationValue" 
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Right"
+                   Grid.Column="1"
+                   FontSize="20 px"/>
+
+        <Slider Name="RotationSlider" 
+                VerticalAlignment="Bottom" 
+                Grid.ColumnSpan="2"
+                Minimum="-180" 
+                Maximum="180" 
+                TickFrequency="1" 
+                IsSnapToTickEnabled="True" 
+                ValueChanged="RotationSlider_ValueChanged"/>
+        
+    </Grid>
+</Page>
