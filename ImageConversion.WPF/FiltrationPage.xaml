@@ -36,7 +36,7 @@
                   SelectionChanged="FiltrationComboBox_SelectionChanged">
 
             <ComboBoxItem Name="MedianFilterComboBoxItem" Content="Median filter"/>
-            <ComboBoxItem Name="SmoothingFilterComboBoxItem" Content="Smoothing filter"/>
+            <ComboBoxItem Name="ManualFilterComboBoxItem" Content="Manual filter"/>
 
         </ComboBox>
 
@@ -57,7 +57,7 @@
 
             <ComboBoxItem Name="SmoothingComboBoxItem" Content="Smoothing"/>
             <ComboBoxItem Name="ManualMaskComboBoxItem" Content="Manual mask"/>
-            
+
         </ComboBox>
 
         <TextBox Name="Mask0Value"

@@ -39,7 +39,7 @@ namespace ImageConversion.Algorithms.Filtration
                 }
             }
 
-            return ExtractBitmap(bufferBitmap, 1, 1, oldBitmap.Width, oldBitmap.Height);
+            return ExtractBitmap(bufferBitmap);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace ImageConversion.WPF
         {
             var currentFiltration = (ComboBoxItem)FiltrationComboBox.SelectedItem;
 
-            MaskComboBox.IsEnabled = currentFiltration.Name == "SmoothingFilterComboBoxItem";
+            MaskComboBox.IsEnabled = currentFiltration.Name == "ManualFilterComboBoxItem";
         }
 
         private void MaskComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -42,47 +42,9 @@ namespace ImageConversion.WPF
             switch ((string)currentMask.Content)
             {
                 case "Smoothing":
-                    for (var i = 0; i < 9; ++i)
-                    {
-                        var maskTextBox = (TextBox)FindName($"Mask{i}Value");
-                        maskTextBox.Text = "1";
-                    }
-
-                    break;
-
-                case "Previtt horizontal": SetMaskValues(
-                    1, 1, 1, 
-                    0, 0, 0, 
-                    -1, -1, -1); break;
-
-                case "Previtt vertical": SetMaskValues(
-                    -1, 0, 1, 
-                    -1, 0, 1, 
-                    -1, 0, 1); break;
-
-                case "Sobel horizontal": SetMaskValues(
-                    1, 2, 1, 
-                    0, 0, 0, 
-                    -1, -2, -1); break;
-
-                case "Sobel vertical": SetMaskValues(
-                    -1, 0, 1, 
-                    -2, 0, 2, 
-                    -1, 0, 1); break;
-
-                case "Laplace high frequencies": SetMaskValues(
-                    -1, -1, -1, 
-                    -1, 8, -1, 
-                    -1, -1, -1); break;
-
-                case "Gauss low frequencies": SetMaskValues(
-                    1, 2, 1, 
-                    2, 4, 2, 
-                    1, 2, 1); break;
-
-                case "Sharpening": SetMaskValues(
-                    -1, -1, -1, 
-                    -1, 16, -1, 
+                    SetMaskValues(
+                    -1, -1, -1,
+                    -1, 3, -1,
                     -1, -1, -1); break;
 
                 default: break;

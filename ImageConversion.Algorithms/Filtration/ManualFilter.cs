@@ -3,11 +3,12 @@ using System.Drawing;
 
 namespace ImageConversion.Algorithms.Filtration
 {
-    public class SmoothingFilter : FilterAlgorithm
+    public class ManualFilter : FilterAlgorithm
     {
         public override Bitmap Filtrate(Bitmap oldBitmap, double[,] mask)
         {
             var bufferBitmap = GetBufferBitmap(oldBitmap);
+
             var normalizingFactor = GetNormalizingFactor(mask);
 
             for (var x = 0; x < oldBitmap.Width; ++x)
@@ -27,11 +28,14 @@ namespace ImageConversion.Algorithms.Filtration
                         {
                             var filterOnBitmapY = y - 1 + filterY;
 
-                            var px = oldBitmap.GetPixel(Math.Clamp(filterOnBitmapX, 0, oldBitmap.Width - 1), Math.Clamp(filterOnBitmapY, 0, oldBitmap.Height - 1));
-                            alpha += px.A * mask[filterX, filterY];
-                            red += px.R * mask[filterX, filterY];
-                            green += px.G * mask[filterX, filterY];
-                            blue += px.B * mask[filterX, filterY];
+                            var pixelUnderFilter = oldBitmap.GetPixel(
+                                Math.Clamp(filterOnBitmapX, 0, oldBitmap.Width - 1), 
+                                Math.Clamp(filterOnBitmapY, 0, oldBitmap.Height - 1));
+
+                            alpha += pixelUnderFilter.A * mask[filterX, filterY];
+                            red += pixelUnderFilter.R * mask[filterX, filterY];
+                            green += pixelUnderFilter.G * mask[filterX, filterY];
+                            blue += pixelUnderFilter.B * mask[filterX, filterY];
                         }
                     }
 
@@ -40,13 +44,17 @@ namespace ImageConversion.Algorithms.Filtration
                     green *= normalizingFactor;
                     blue *= normalizingFactor;
 
-                    var filteredColor = Color.FromArgb(Math.Clamp((int)alpha, 0, 255), Math.Clamp((int)red, 0, 255), Math.Clamp((int)green, 0, 255), Math.Clamp((int)blue, 0, 255));
+                    var filteredColor = Color.FromArgb(
+                        Math.Clamp((int)alpha, 0, 255), 
+                        Math.Clamp((int)red, 0, 255), 
+                        Math.Clamp((int)green, 0, 255), 
+                        Math.Clamp((int)blue, 0, 255));
 
                     bufferBitmap.SetPixel(x + 1, y + 1, filteredColor);
                 }
             }
 
-            return ExtractBitmap(bufferBitmap, 1, 1, oldBitmap.Width, oldBitmap.Height);
+            return ExtractBitmap(bufferBitmap);
         }
     }
 }

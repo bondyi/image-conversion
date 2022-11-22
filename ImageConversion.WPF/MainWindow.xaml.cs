@@ -102,7 +102,7 @@ namespace ImageConversion
 
                             break;
 
-                        case "Smoothing filter":
+                        case "Manual filter":
                             var mask = new double[3, 3];
 
                             var count = 0;
@@ -116,7 +116,7 @@ namespace ImageConversion
                             }
 
                             stopwatch.Start();
-                            image = new SmoothingFilter().Filtrate(image, mask);
+                            image = new ManualFilter().Filtrate(image, mask);
                             stopwatch.Stop();
 
                             break;

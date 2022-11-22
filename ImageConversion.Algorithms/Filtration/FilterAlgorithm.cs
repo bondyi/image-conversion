@@ -36,15 +36,15 @@ namespace ImageConversion.Algorithms.Filtration
             return bufferBitmap;
         }
 
-        protected static Bitmap ExtractBitmap(Bitmap bufferBitmap, int fromX, int fromY, int width, int height)
+        protected static Bitmap ExtractBitmap(Bitmap bufferBitmap)
         {
-            var newBitmap = new Bitmap(width, height);
+            var newBitmap = new Bitmap(bufferBitmap.Width - 2, bufferBitmap.Height - 2);
 
             for (var x = 0; x < newBitmap.Width; ++x)
             {
                 for (var y = 0; y < newBitmap.Height; ++y)
                 {
-                    newBitmap.SetPixel(x, y, bufferBitmap.GetPixel(x + fromX, y + fromY));
+                    newBitmap.SetPixel(x, y, bufferBitmap.GetPixel(x + 1, y + 1));
                 }
             }
 
